@@ -1,21 +1,18 @@
-const isValid = (s) => {
-    let prevBracket;
-    do {
-        prevBracket = s;
-        s = s
-            .replace('()', '')
-            .replace('[]', '')
-            .replace('{}', '');
-    } while (s !== prevBracket);
-    return s.length === 0;
-};
+function isValid(s) {
+  if (s.length % 2 !== 0) return false; // quick reject for odd lengths
 
-// Test cases
-let s = '()';
-console.log(isValid(s)); // true
+  const PAIRS = ['()', '{}', '[]'];
+  let changed = true;
 
-s = '([]){}';
-console.log(isValid(s)); // true
+  while (changed) {
+    changed = false;
+    for (const pair of PAIRS) {
+      if (s.includes(pair)) {
+        s = s.replaceAll(pair, '');
+        changed = true;
+      }
+    }
+  }
 
-s = '({)}';
-console.log(isValid(s)); // false
+  return s.length === 0;
+}
