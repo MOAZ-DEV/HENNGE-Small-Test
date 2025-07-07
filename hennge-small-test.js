@@ -1,5 +1,5 @@
 function isValid(s) {
-  if (s.length % 2 !== 0) return false; // quick reject for odd lengths
+  if (s.length % 2 !== 0) return false;
 
   const PAIRS = ['()', '{}', '[]'];
   let changed = true;
